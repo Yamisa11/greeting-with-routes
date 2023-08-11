@@ -1,0 +1,17 @@
+<div class="greet">
+    <h1>Greeting App</h1>
+    <form action="/greeting" method="post">
+    <label for=""> Please enter name<input type="text" name="theInputName"></label>
+    <button type="submit">Greet me!</button>
+ <div class="radioInput">
+      <label for=""> <input type="radio" name="languageInput" value="isiXhosa">IsiXhosa</label>
+    <label for=""><input type="radio" name="languageInput" value="english">English</label>
+    <label for=""><input type="radio" name="languageInput" value="isiZulu">isiZulu</label>
+ </div>
+    </form>
+
+    <div class="display">
+        <p>{{theGreeting}}</p>
+        <p>{{errorMessage}}</p>
+    </div>
+</div>

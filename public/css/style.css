@@ -1,0 +1,16 @@
+*{
+    text-align: center;
+    margin-top: 1.2em;
+    border-radius: 8px;
+   
+}
+input,button{
+    height: 1.5em;
+}
+.greet{
+   
+    margin: 5em 18em ;
+    border: 1px solid;
+    width: 50%;
+    background-color: grey;
+}
