@@ -21,7 +21,8 @@ app.get('/', (req,res) => {
     res.render('index', {
         showGreet : greetingFunction.getInputName(),
         theGreeting: greetingFunction.getGreeting(),
-        errorMessage: error
+        errorMessage: error,
+        // counter : greetingFunction.allNamesFunction()
     })
 })
 
@@ -33,6 +34,7 @@ app.post('/greeting', (req,res) => {
 error = greetingFunction.errors(req.body.theInputName, req.body.languageInput);
 console.log(greetingFunction.getGreeting());
 console.log(greetingFunction.errors(req.body.theInputName, req.body.languageInput));
+console.log((greetingFunction.allNamesFunction(req.body.theInputName)).length);
 
    res.redirect('/')
 })

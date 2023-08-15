@@ -15,8 +15,8 @@ export default function Greeting(){
   
     function allNamesFunction(theName) {
       if (regex.test(theName) === true) {
-        if (allNames.includes(theName.toLowerCase()) === false) {
-          allNames.push(theName.toLowerCase());
+        if (allNames.includes(theName) === false) {
+          allNames.push(theName);
         }
         return allNames;
       }
@@ -39,8 +39,8 @@ export default function Greeting(){
                 if (language == 'english') {
                     greeting = 'Hello, ' + name
                 }
-                if (language == 'swahili') {
-                    greeting = 'Jambo, ' + name
+                if (language == 'isiZulu') {
+                    greeting = 'Sawubona, ' + name
                 }
                 if (language == 'isiXhosa') {
                     greeting = 'Molo, ' + name
