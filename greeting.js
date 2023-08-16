@@ -13,14 +13,14 @@ export default function Greeting(){
       return theName;
     }
   
-    function allNamesFunction(theName) {
-      if (regex.test(theName) === true) {
-        if (allNames.includes(theName) === false) {
-          allNames.push(theName);
-        }
-        return allNames;
-      }
-    }
+    // function allNamesFunction(theName) {
+    //   if (regex.test(theName) === true) {
+    //     {
+    //       allNames.push(theName);
+    //     }
+    //     return allNames;
+    //   }
+    // }
   
     // function isiXhosaGreeting() {
     //   return "Molo, " + theName.charAt(0).toUpperCase() + theName.slice(1);
@@ -35,6 +35,7 @@ export default function Greeting(){
     // }
     function theGreeting(name1,language){
             if (name1.match(/^[a-zA-Z]+$/)) {
+              if (allNames.includes(name1) === false && !errors(name1,language)){
                 name = name1.charAt(0).toUpperCase() + name1.slice(1).toLocaleLowerCase()
                 if (language == 'english') {
                     greeting = 'Hello, ' + name
@@ -45,11 +46,14 @@ export default function Greeting(){
                 if (language == 'isiXhosa') {
                     greeting = 'Molo, ' + name
                 }
+                allNames.push(name1)
+              }
             }
         }
         function getGreeting() {
             return greeting
         }
+       
   
     function errors(names,language){
       if (names == "" && language == null) {
@@ -81,7 +85,7 @@ export default function Greeting(){
     }
   
     function getNames() {
-      return allNames;
+     return allNames
     }
   
   
@@ -90,7 +94,6 @@ export default function Greeting(){
       setInputName,
       getInputName,
     theGreeting,
-      allNamesFunction,
       clearAll,
       classListError,
       success,

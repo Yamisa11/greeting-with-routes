@@ -15,14 +15,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 var  greetingFunction = Greeting()
 let error
+let nameCounts
+let greetingMsg 
 
 app.get('/', (req,res) => {
     
     res.render('index', {
         showGreet : greetingFunction.getInputName(),
-        theGreeting: greetingFunction.getGreeting(),
+        theGreeting: error? "" : greetingMsg,
         errorMessage: error,
-        // counter : greetingFunction.allNamesFunction()
+        counter : nameCounts
     })
 })
 
@@ -32,9 +34,10 @@ app.post('/greeting', (req,res) => {
 //    greetingFunction.setInputName(req.body.theInputName)
 (greetingFunction.theGreeting(req.body.theInputName,req.body.languageInput))
 error = greetingFunction.errors(req.body.theInputName, req.body.languageInput);
-console.log(greetingFunction.getGreeting());
+greetingMsg = greetingFunction.getGreeting();
+console.log(greetingMsg);
 console.log(greetingFunction.errors(req.body.theInputName, req.body.languageInput));
-console.log((greetingFunction.allNamesFunction(req.body.theInputName)).length);
+nameCounts = greetingFunction.getNames().length
 
    res.redirect('/')
 })
