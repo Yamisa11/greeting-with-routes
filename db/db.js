@@ -6,7 +6,7 @@ export default function GreetingDBLogic(db){
     }
 
     async function getName(theGreetedUser) {
-        const result = await db.oneOrNone('SELECT * FROM users WHERE name = $1', [theGreetedUser]);
+        const result = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [theGreetedUser]);
         return result
     }
     async function insertValues(usersName) {
@@ -20,12 +20,17 @@ export default function GreetingDBLogic(db){
         const result = await db.none('UPDATE greeting SET count = $2 WHERE name = $1', [username, usercount]);
         return result;
     }
+    async function getUserCounter(theGreetedUser){
+        const result = await db.any('SELECT counter FROM users WHERE username = $1', [theGreetedUser])
+        return result
+    }
 
     return{
         getAll,
         getName,
         insertValues,
-        updateName
+        updateName,
+        getUserCounter
     }
 
 }

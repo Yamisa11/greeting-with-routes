@@ -21,3 +21,19 @@ button{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #d5bdaf;
 }
+.greeted{
+    background-color: #d5bdaf;
+   
+}
+.greetedName{
+   border: 1px ;
+    padding: 5px;
+    width: 100%;
+    
+}
+a{text-decoration: none !important;
+    color: black !important;
+}
+.view{
+    float: right !important;
+}

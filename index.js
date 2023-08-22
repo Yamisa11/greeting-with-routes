@@ -34,28 +34,45 @@ let greetingMsg
 app.get('/', (req,res) => {
     let errorMsg = req.flash("error")[0]
     res.render('index', {
-        showGreet : greetingFunction.getInputName(),
+        showGreet : greetingFunction.getName(),
         theGreeting: errorMsg? "" : greetingMsg,
         errorMessage: errorMsg,
         counter : errorMsg? "" : nameCounts
     })
 })
 
-app.post('/greeting', (req,res) => {
-    console.log(req.body.theInputName)
-    console.log(req.body.languageInput);
-//    greetingFunction.setInputName(req.body.theInputName)
+app.post('/greeting', async (req,res) => {
+
 (greetingFunction.theGreeting(req.body.theInputName,req.body.languageInput,database))
 errors = greetingFunction.errors(req.body.theInputName, req.body.languageInput);
 req.flash('error', errors);
 greetingMsg = greetingFunction.getGreeting();
-console.log(greetingMsg);
-console.log(greetingFunction.errors(req.body.theInputName, req.body.languageInput));
-nameCounts = greetingFunction.getNames().length
+
+nameCounts = (await database.getAll()).length
+
 console.log(nameCounts);
 
    res.redirect('/')
 })
+
+app.get('/greeted', async function(req,res) {
+    res.render('greeted', {
+        listOfNames: await database.getAll()
+        
+    })
+  
+})
+
+app.get('/counter/:username', async function(req,res) {
+    let username = req.params.username
+    let theCount = (await database.getUserCounter(username))[0]
+console.log(theCount);
+    res.render('counter', {
+        user: username,
+        count:  theCount.counter
+    })
+})
+
 
 let PORT = process.env.PORT || 2000;
 app.listen(PORT, () => {

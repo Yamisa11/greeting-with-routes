@@ -9,10 +9,7 @@ export default function Greeting() {
     theName = inputName.toLowerCase();
   }
 
-  function getInputName() {
-    return theName;
-  }
-
+  
   async function theGreeting(name1, language, database) {
     if (name1.match(/^[a-zA-Z]+$/)) {
       name =
@@ -33,6 +30,16 @@ export default function Greeting() {
         await  database.insertValues(name)
       }
     }
+  }
+  async function getCount(database){
+    await database.getAll().length
+  }
+  function getName() {
+    return name;
+  }
+ 
+  async function userCounter(name,database){
+    await database.getUserCounter(name)
   }
 
   function getGreeting() {
@@ -74,14 +81,15 @@ export default function Greeting() {
   return {
     getGreeting,
     setInputName,
-    getInputName,
     theGreeting,
     clearAll,
     classListError,
     success,
     getNames,
-    getInputName,
+    getName,
     errors,
     invalidInput,
+    userCounter,
+    getCount
   };
 }
