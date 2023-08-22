@@ -73,6 +73,18 @@ console.log(theCount);
     })
 })
 
+app.post('/reset', async function (req,res) {
+    try {
+        database.reset(database);
+        req.flash('resetMessage', 'You have cleared your database!')
+        res.redirect('/')
+    }
+    catch (error) {
+        console.log('Error reseting your webapp', error)
+    }
+
+})
+
 
 let PORT = process.env.PORT || 2000;
 app.listen(PORT, () => {

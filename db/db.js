@@ -16,9 +16,9 @@ export default function GreetingDBLogic(db){
             console.error('Error inserting users data:', error);
         }
     }
-    async function updateName(username, usercount) {
-        const result = await db.none('UPDATE greeting SET count = $2 WHERE name = $1', [username, usercount]);
-        return result;
+    async function reset() {
+        const clear = await db.none('DELETE FROM users')
+        return clear;
     }
     async function getUserCounter(theGreetedUser){
         const result = await db.any('SELECT counter FROM users WHERE username = $1', [theGreetedUser])
@@ -29,7 +29,7 @@ export default function GreetingDBLogic(db){
         getAll,
         getName,
         insertValues,
-        updateName,
+        reset,
         getUserCounter
     }
 

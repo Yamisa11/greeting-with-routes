@@ -1,8 +1,11 @@
 <div class="greeted">
+	<h1>Greeted users</h1>
    <div>
 	    {{#each listOfNames}} 
 	<div class="greetedName"><a href="/counter/{{username}}">{{username}}<button class="view">view</button></a></div>
 	{{/each}}
    </div>
-    
+    <div class="nav">
+		<a href="/" class="back"><button>Back</button></a>
+	</div>
 </div>

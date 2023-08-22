@@ -23,17 +23,29 @@ button{
 }
 .greeted{
     background-color: #d5bdaf;
+    height: 25em !important;
    
 }
 .greetedName{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
    border: 1px ;
-    padding: 5px;
-    width: 100%;
+    margin: 10px;
+    width: 95%;
+    text-align: left !important;
+    padding-left: 15px !important;
+    font-size: large;
+    
     
 }
 a{text-decoration: none !important;
     color: black !important;
+    
 }
 .view{
     float: right !important;
+    
+}
+.nav{
+    float:right;
+    position: fixed !important;
 }
