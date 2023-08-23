@@ -31,13 +31,16 @@ let errors
 let nameCounts
 let greetingMsg 
 
+
 app.get('/', (req,res) => {
     let errorMsg = req.flash("error")[0]
+    let resetMsg = req.flash("resetMsg")
     res.render('index', {
         showGreet : greetingFunction.getName(),
         theGreeting: errorMsg? "" : greetingMsg,
         errorMessage: errorMsg,
-        counter : errorMsg? "" : nameCounts
+        counter : errorMsg? "" : nameCounts,
+        resetMessage: resetMsg
     })
 })
 
@@ -76,11 +79,11 @@ console.log(theCount);
 app.post('/reset', async function (req,res) {
     try {
         database.reset(database);
-        req.flash('resetMessage', 'You have cleared your database!')
+        req.flash('resetMsg', 'Successfully cleared database!')
         res.redirect('/')
     }
     catch (error) {
-        console.log('Error reseting your webapp', error)
+        console.log('Error reseting your database', error)
     }
 
 })

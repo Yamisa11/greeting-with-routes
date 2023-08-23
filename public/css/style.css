@@ -1,40 +1,46 @@
 body{
-    background-color: #edede9 !important;
+    
+    background-image: url("../image/back.jpeg");
 }
 *{
     text-align:center;
     margin-top: 1.2em;
     border-radius: 8px;
+    
    
 }
 button{
     background-color: #778da9;
     border-radius: 5px !important;
     border: none !important;
+    margin:10px !important
 }
 
 .container{
    
-    margin: 5em 18em ;
-    border: 1px solid;
-    width: 65% !important;
+    background-color: #7793ab !important;
+    margin: 3em 18em ;
+    border: none;
+    width: 75% !important;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: #d5bdaf;
+    height: 30em;
+    
 }
 .greeted{
     background-color: #d5bdaf;
-    height: 25em !important;
+    height: 30em !important;
+    margin-top: 15px !important;
    
 }
 .greetedName{
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-   border: 1px ;
-    margin: 10px;
+   
+    
+    /* margin: 10px; */
     width: 95%;
     text-align: left !important;
-    padding-left: 15px !important;
+    /* padding-left: 15px !important; */
     font-size: large;
-    
+    height: 2em !important;
     
 }
 a{text-decoration: none !important;
@@ -43,9 +49,53 @@ a{text-decoration: none !important;
 }
 .view{
     float: right !important;
+    margin: 0% !important;
     
 }
 .nav{
     float:right;
     position: fixed !important;
+}
+.left, .right{
+    width : 50% !important;
+    /* float: left; */
+    
+    margin-bottom: 15px !important;
+}
+.greet{
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 20px !important;
+    background-color: #d5bdaf;
+}
+.display{
+    display: block;
+    border: 1px solid;
+    height: 10em !important;
+    background-color: aliceblue;
+    width: 95% !important;
+    font-size: large;
+   
+}
+.display p{
+    font-size:x-large !important;
+    padding: 5px !important;
+    margin-top: 0.7em !important;
+}
+.inputName{
+    width: 80% !important;
+    padding-left: 10px !important;
+}
+h6{
+    word-wrap: break-word !important;
+    width: 90% !important;
+    padding: 10px;
+}
+.counter{
+    background-color: #d5bdaf;
+    height: 30em !important;
+}
+.nav button{
+    margin-top:15em !important;
+    float:right !important
 }

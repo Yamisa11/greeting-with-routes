@@ -27,8 +27,9 @@ export default function Greeting() {
       }
       if (allNames.includes(name) === false && !errors(name, language )){
         allNames.push(name);
-        await  database.insertValues(name)
+        
       }
+      await  database.insertValues(name)
     }
   }
   async function getCount(database){

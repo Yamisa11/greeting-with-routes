@@ -1,25 +1,73 @@
+<h1 style="margin: 5px !important;">Greeting App</h1>
 <div class="greet">
-    <div class="left">
-      <h1>Welcome</h1>
+  <div class="left">
     <form action="/greeting" method="post">
-    <h7>Please enter your name below, choose your preffered language and press the button for a greeeting </h7>
-    <input type="text" name="theInputName" placeholder="Enter name">
- <div class="radioInput">
-      <label for=""> <input type="radio" name="languageInput" value="isiXhosa">IsiXhosa</label>
-    <label for=""><input type="radio" name="languageInput" value="english">English</label>
-    <label for=""><input type="radio" name="languageInput" value="isiZulu">isiZulu</label>
- </div>
-  <button type="submit">Greet me!</button>
+      <h6>Please enter your name below, choose your preffered language and press
+        the button for a greeeting
+      </h6>
+      <div>
+        <input
+          type="text"
+          name="theInputName"
+          class="inputName"
+          placeholder="Enter name"
+        />
+      </div>
+      {{#if errorMessage}}
+        <span class="failed"
+          style="background-color: rgba(242, 15, 15, 0.816); word-wrap: break-word"
+        >{{errorMessage}}</span>
+        <script>
+
+          setTimeout(function () {
+          document.querySelector('.failed').style.display = 'none'; },
+          3500);
+        </script>
+      {{/if}}
+      {{#if resetMessage}}
+        <span class="success"
+          style="background-color: rgba(30, 253, 22, 0.918); word-wrap: break-word"
+          
+        >{{resetMessage}}</span>
+           <script>
+
+          setTimeout(function () {
+          document.querySelector('.success').style.display = 'none'; },
+          3500);
+        </script>
+      {{/if}}
+      <div class="radioInput">
+        <label for="">
+          <input
+            type="radio"
+            name="languageInput"
+            value="isiXhosa"
+          />IsiXhosa</label>
+        <label for=""><input
+            type="radio"
+            name="languageInput"
+            value="english"
+          />English</label>
+        <label for=""><input
+            type="radio"
+            name="languageInput"
+            value="isiZulu"
+          />isiZulu</label>
+      </div>
+      <button type="submit">Greet me!</button>
     </form>
-    </div>
-    <div class="right">
+
+  </div>
+  <div class="right">
     <div class="display">
-        <p>{{theGreeting}}</p>
-        <p>{{errorMessage}}</p>
-        <p>{{counter}}</p>
+
+      <p>{{theGreeting}}</p>
+
+      <p>{{counter}}</p>
     </div>
-       <form action="/reset" method="post" style="display: inline;">
- <button type="submit">Reset</button></form> <a href="/greeted"><button>view greeted</button></a>
-    </div>
+    <form action="/reset" method="post" style="display: inline;">
+      <button type="submit">Clear data</button></form>
+    <a href="/greeted"><button>view greeted</button></a>
+  </div>
 
 </div>
