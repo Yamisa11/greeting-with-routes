@@ -9,11 +9,9 @@ export default function Greeting() {
     theName = inputName.toLowerCase();
   }
 
-  
   async function theGreeting(name1, language, database) {
     if (name1.match(/^[a-zA-Z]+$/)) {
-      name =
-        name1.charAt(0).toUpperCase() + name1.slice(1).toLocaleLowerCase();
+      name = name1.charAt(0).toUpperCase() + name1.slice(1).toLocaleLowerCase();
       if (!errors(name, language)) {
         if (language == "english") {
           greeting = "Hello, " + name;
@@ -25,22 +23,21 @@ export default function Greeting() {
           greeting = "Molo, " + name;
         }
       }
-      if (allNames.includes(name) === false && !errors(name, language )){
+      if (allNames.includes(name) === false && !errors(name, language)) {
         allNames.push(name);
-        
       }
-      await  database.insertValues(name)
+      await database.insertValues(name);
     }
   }
-  async function getCount(database){
-    await database.getAll().length
+  async function getCount(database) {
+    await database.getAll().length;
   }
   function getName() {
     return name;
   }
- 
-  async function userCounter(name,database){
-    await database.getUserCounter(name)
+
+  async function userCounter(name, database) {
+    await database.getUserCounter(name);
   }
 
   function getGreeting() {
@@ -57,10 +54,11 @@ export default function Greeting() {
     if (language == null) {
       return "Please choose language!";
     }
+    if (!names.match(/^[a-zA-Z]+$/)) {
+      return "Please enter valid name!";
+    }
   }
-  function invalidInput() {
-    return "Please enter valid name!";
-  }
+
   function classListError() {
     if (errors) {
       return "danger";
@@ -89,8 +87,7 @@ export default function Greeting() {
     getNames,
     getName,
     errors,
-    invalidInput,
     userCounter,
-    getCount
+    getCount,
   };
 }
