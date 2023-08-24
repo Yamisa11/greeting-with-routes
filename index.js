@@ -7,6 +7,10 @@ import DBJS from "./database.js";
 import flash from "express-flash";
 import session from "express-session";
 
+import indexRoute from "./routes/index.route.js"
+import greetedRoute from "./routes/greeted.route.js";
+import counterRoute from "./routes/counter.route.js"
+
 const app = express();
 let database = GreetingDBLogic(DBJS);
 
@@ -28,66 +32,21 @@ app.use(
 app.use(flash());
 
 var greetingFunction = Greeting();
-let errors;
-let greetingMsg;
 let nameCounts =await database.getCounter()
-let resets;
+let theIndexRoute = indexRoute(greetingFunction,database)
+let theGreetedRoute = greetedRoute(database)
+let theCounterRoute = counterRoute(database)
 
-app.get("/", (req, res) => {
-  let errorMsg = req.flash("error")[0];
-  let resetMsg = req.flash("resetMsg");
-  res.render("index", {
-    showGreet: greetingFunction.getName(),
-    theGreeting: errorMsg || resets ? "" : greetingMsg,
-    errorMessage: errorMsg,
-    counter: nameCounts,
-    resetMessage: resetMsg,
-  });
-});
 
-app.post("/greeting", async (req, res) => {
-  await greetingFunction.theGreeting(
-    req.body.theInputName,
-    req.body.languageInput,
-    database
-  );
-  errors = greetingFunction.errors(
-    req.body.theInputName,
-    req.body.languageInput
-  );
-  req.flash("error", errors);
-  greetingMsg =  greetingFunction.getGreeting();
+app.get("/", theIndexRoute.index );
 
- nameCounts = await database.getCounter();
+app.post("/greeting", theIndexRoute.greeting);
 
-  
+app.get("/greeted", theGreetedRoute.greeted);
 
-  res.redirect("/");
-});
+app.get("/counter/:username", theCounterRoute.counterHistory);
 
-app.get("/greeted", async function (req, res) {
-  res.render("greeted", {
-    listOfNames: await database.getAll(),
-  });
-});
-
-app.get("/counter/:username", async function (req, res) {
-  let username = req.params.username;
-  let theCount = (await database.getUserCounter(username))[0];
-  console.log(theCount);
-  res.render("counter", {
-    user: username,
-    count: theCount.counter,
-  });
-});
-
-app.post("/reset", async function (req, res) {
-  resets = await database.reset(database);
-  req.flash("resetMsg", "Successfully cleared database!");
-  greetingMsg = "";
-  nameCounts = 0;
-  res.redirect("/");
-});
+app.post("/reset", theIndexRoute.reset);
 
 let PORT = process.env.PORT || 2023;
 app.listen(PORT, () => {
