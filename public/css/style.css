@@ -30,6 +30,7 @@ button{
     background-color: #d5bdaf;
     height: 30em !important;
     margin-top: 15px !important;
+    padding: 10px !important
    
 }
 .greetedName{
@@ -95,7 +96,7 @@ h6{
     background-color: #d5bdaf;
     height: 30em !important;
 }
-.nav button{
-    margin-top:15em !important;
+.nav a{
+    margin-top:50% !important;
     float:right !important
 }

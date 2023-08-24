@@ -4,6 +4,7 @@ export default function Greeting() {
   var allNames = [];
   let name = "";
   let greeting = "";
+  let theCounter
 
   function setInputName(inputName) {
     theName = inputName.toLowerCase();
@@ -22,16 +23,19 @@ export default function Greeting() {
         if (language == "isiXhosa") {
           greeting = "Molo, " + name;
         }
+        await database.insertValues(name);
       }
       if (allNames.includes(name) === false && !errors(name, language)) {
         allNames.push(name);
       }
-      await database.insertValues(name);
     }
   }
-  async function getCount(database) {
-    await database.getAll().length;
-  }
+  // async function getCount(database) {
+  //   theCounter = await database.getCounter()
+  //   if (theCounter == undefined) {
+  //     theCounter === 0
+  //   }
+  // }
   function getName() {
     return name;
   }
@@ -48,14 +52,14 @@ export default function Greeting() {
     if (names == "" && language == null) {
       return "Please enter name and language!";
     }
-    if (names == "") {
-      return "Please enter name!";
-    }
-    if (language == null) {
-      return "Please choose language!";
-    }
     if (!names.match(/^[a-zA-Z]+$/)) {
       return "Please enter valid name!";
+    }
+    if (names == "" && language != null) {
+      return "Please enter name!";
+    }
+    if (language == null && names != "") {
+      return "Please choose language!";
     }
   }
 
@@ -88,6 +92,6 @@ export default function Greeting() {
     getName,
     errors,
     userCounter,
-    getCount,
+   
   };
 }

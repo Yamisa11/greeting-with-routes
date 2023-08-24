@@ -24,13 +24,19 @@ export default function GreetingDBLogic(db){
         const result = await db.any('SELECT counter FROM users WHERE username = $1', [theGreetedUser])
         return result
     }
+    async function getCounter(){
+        const result =  await db.any('SELECT * FROM users')
+        console.log(result);
+        return result.length
+    }
 
     return{
         getAll,
         getName,
         insertValues,
         reset,
-        getUserCounter
+        getUserCounter,
+        getCounter
     }
 
 }
