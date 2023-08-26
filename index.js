@@ -48,7 +48,7 @@ app.get("/counter/:username", theCounterRoute.counterHistory);
 
 app.post("/reset", theIndexRoute.reset);
 
-let PORT = process.env.PORT || 2023;
+let PORT = process.env.PORT || 2000;
 app.listen(PORT, () => {
   console.log("App started...", PORT);
 });

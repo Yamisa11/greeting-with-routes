@@ -52,12 +52,13 @@ export default function Greeting() {
     if (names == "" && language == null) {
       return "Please enter name and language!";
     }
-    if (!names.match(/^[a-zA-Z]+$/)) {
-      return "Please enter valid name!";
-    }
     if (names == "" && language != null) {
       return "Please enter name!";
     }
+    if (!names.match(/^[a-zA-Z]+$/)) {
+      return "Please enter valid name!";
+    }
+   
     if (language == null && names != "") {
       return "Please choose language!";
     }
